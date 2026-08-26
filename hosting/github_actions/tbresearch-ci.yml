@@ -1,0 +1,57 @@
+# tbresearch CI — GitHub Actions workflow
+#
+# WHAT THIS DOES
+#   Runs the full offline test suite (43 tests, no network, no Docker) on
+#   every push and pull request, then regenerates the canonical run
+#   summary (data/canonical_run_summary.json) and uploads it as a
+#   downloadable artifact -- so anyone reviewing a PR can see the actual
+#   naive-vs-purged numbers for that commit without cloning the repo.
+#
+# HOW TO USE
+#   1. Put this project on GitHub.
+#   2. Copy this file to:  .github/workflows/tbresearch-ci.yml
+#      in your repo root. (The .github/workflows path is required.)
+#   3. Commit and push. Open the "Actions" tab to watch it run.
+#   4. (Recommended) Settings -> Branches -> add a rule for your default
+#      branch -> require this check ("test") to pass before merging.
+
+name: tbresearch-ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: build_from_scratch
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run the full offline test suite
+        run: python -m pytest -q
+
+      - name: Run the CLI end to end (labels, cross-validates, prints the headline comparison)
+        run: python -m tbresearch run
+
+      - name: Regenerate the canonical run summary
+        run: python generate_data.py
+
+      - name: Upload the canonical run summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: canonical-run-summary
+          path: build_from_scratch/data/canonical_run_summary.json

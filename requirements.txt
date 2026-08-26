@@ -1,0 +1,11 @@
+numpy>=1.26
+pandas>=2.1
+scikit-learn>=1.4
+matplotlib>=3.8
+pytest>=8.0
+
+# Optional: real market data instead of the synthetic series
+yfinance>=0.2.40
+
+# Optional: the hosted dashboard
+streamlit>=1.36

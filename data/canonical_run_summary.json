@@ -1,0 +1,19 @@
+{
+  "n_days": 1000,
+  "n_events": 383,
+  "label_counts": {
+    "-1.0": 196,
+    "1.0": 187
+  },
+  "naive": {
+    "mean_train_accuracy": 0.9216708181643993,
+    "mean_test_accuracy": 0.6266917293233083,
+    "mean_test_f1": 0.6255652932443923
+  },
+  "purged": {
+    "mean_train_accuracy": 0.9189767278238474,
+    "mean_test_accuracy": 0.5511619958988381,
+    "mean_test_f1": 0.5221238187982467
+  },
+  "naive_overstates_by": 0.07552973342447022
+}
