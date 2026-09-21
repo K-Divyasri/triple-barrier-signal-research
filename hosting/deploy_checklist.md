@@ -4,11 +4,11 @@ Before you call this "shipped" and link it on a resume:
 
 ## Code and repo hygiene
 
-- [ ] `build_from_scratch/.gitignore` excludes `__pycache__/`, `.pytest_cache/`,
+- [ ] `.gitignore` excludes `__pycache__/`, `.pytest_cache/`,
       `.venv/` (it does).
 - [ ] `labs/.gitignore` excludes the generated `synthetic_ohlcv.csv` (it
       does) — commit the scripts, not their throwaway output.
-- [ ] `build_from_scratch/data/` — decide whether to commit the sample
+- [ ] `data/`: decide whether to commit the sample
       `synthetic_prices.csv` + `canonical_run_summary.json` (useful so a
       visitor sees real numbers without running anything) or regenerate
       them fresh via CI (this project's workflow does the latter).
@@ -18,7 +18,7 @@ Before you call this "shipped" and link it on a resume:
 
 ## Prove it actually runs
 
-- [ ] `cd build_from_scratch && python -m pytest -q` passes (43 tests, no
+- [ ] `python -m pytest -q` passes (43 tests, no
       network needed).
 - [ ] `python -m tbresearch run` prints the naive-vs-purged headline
       comparison cleanly.
@@ -52,7 +52,7 @@ Before you call this "shipped" and link it on a resume:
 - [ ] You can describe the tuning journey that made the leakage gap
       visible from memory — it's the single best "I actually built and
       debugged this, I didn't just implement a known method" detail in the
-      whole project (`build_from_scratch/architecture.md`).
+      whole project (`architecture.md`).
 - [ ] You know why `purge_fraction` can look small (1-6%) while the naive-
       vs-purged accuracy gap is large (5-20+ points) — a subtle point most
       people who've only read the theory get wrong (`labs/05`'s README).

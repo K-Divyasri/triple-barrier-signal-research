@@ -25,9 +25,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: build_from_scratch
     steps:
       - name: Check out the code
         uses: actions/checkout@v4
@@ -54,4 +51,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: canonical-run-summary
-          path: build_from_scratch/data/canonical_run_summary.json
+          path: data/canonical_run_summary.json

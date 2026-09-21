@@ -13,14 +13,14 @@ Host it free:
   2. streamlit run hosting/streamlit_app.py
   3. push to GitHub, then at share.streamlit.io point it at this file.
 
-This file lives in hosting/ but imports tbresearch from ../build_from_scratch/,
+This file lives in hosting/ but imports tbresearch from the repo root (../),
 so it works whether you run it from the repo root or from inside hosting/.
 """
 import pathlib
 import sys
 
 HERE = pathlib.Path(__file__).resolve().parent
-PACKAGE_DIR = HERE.parent / "build_from_scratch"
+PACKAGE_DIR = HERE.parent
 sys.path.insert(0, str(PACKAGE_DIR))
 
 import matplotlib.pyplot as plt  # noqa: E402
@@ -150,13 +150,13 @@ with tab_about:
 | The naive-vs-purged gap | Real, measured fresh on every slider change above — not asserted |
 
 This dashboard runs the exact same `tbresearch` package used by the 43
-offline pytest tests in `build_from_scratch/tests/` and by
+offline pytest tests in `tests/` and by
 `python -m tbresearch run` on the command line — nothing here is a
 separate, simplified reimplementation for the demo.
 
 See `../knowledge/00_START_HERE.md` for the full concept walkthrough,
 `../knowledge/notebooks/` for step-by-step notebooks, and
-`../build_from_scratch/architecture.md` for the full pipeline diagram and
+`../architecture.md` for the full pipeline diagram and
 the tuning journey behind this project's default configuration.
         """
     )

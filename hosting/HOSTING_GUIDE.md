@@ -84,6 +84,6 @@ If you only do two things: **Step 1** (CI, actually running) and **Step 2**
 (the Streamlit dashboard). Together those are a complete, credible, and —
 unlike a screenshot — a *verifiable* portfolio entry.
 
-See `../build_from_scratch/README.md` for running everything locally
+See `../README.md` for running everything locally
 first, and `deploy_checklist.md` for a one-page checklist before you
 consider this "shipped."
